@@ -3,7 +3,7 @@
     overflow: hidden;
 }
 
-header{
+header {
     position: sticky;
     top: 0;
     z-index: 9999;
@@ -12,13 +12,13 @@ header{
 }
 
 /* ============= 배너 쿠폰 ============ */
-.top_coupon a{
+.top_coupon a {
     font-family: 'Pretendard Bold';
     color: #2b2b2b;
 }
 
-/* ============= 검색창 ============ */
-.search-btn>i::after{
+/* =============검색창============ */
+.search-btn>i::after {
     content: "\f002";
     font: var(--fa-font-solid);
     font-size: 20px;
@@ -39,28 +39,36 @@ header{
     border-radius: 30px;
     transition: 0.4s;
     width: 35px;
+    overflow: hidden;
 }
 
-.search-box:hover {
+.search-box-expanded {
     box-shadow: 0px 0px .5px 1px #343d3c;
     width: 282px;
 }
 
 .search-btn {
     text-decoration: none;
-    /* float: right; */
     width: 30px;
     height: 30px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
     color: #51e3d4;
 }
 
-.search-box:hover>.search-btn {
-    background-color: #fff;
+
+.search-btn>i {
+    width: 20px;
+    height: 20px;
+}
+
+.search-btn>i::after {
+    content: "\f002";
+    font: var(--fa-font-solid);
+    font-size: 20px;
+    color: black;
 }
 
 .search-txt {
@@ -70,23 +78,24 @@ header{
     border: none;
     background: none;
     outline: none;
-    float: left;
     font-size: 1rem;
     line-height: 30px;
     transition: .4s;
 }
 
-.search-box:hover>.search-txt {
+.search-txt:focus {
     width: 240px;
     padding: 0 6px;
+}
+
+.search-txt::placeholder {
+    color: #757575;
 }
 
 /* =======상단메뉴=============== */
 
 .nav_logo {
-    /* width: 180px; */
-    /* position: relative; */
-    height: 66px;
+    height: 67px;
 }
 
 .navbar>a:first-child {
@@ -100,6 +109,7 @@ header{
 
 .category {
     display: flex;
+    justify-content: center;
     width: 165px
 }
 
@@ -123,83 +133,93 @@ header{
 
 }
 
-.row {
-    height: 65vh;
-}
-
 /* 메뉴항목 단일행 정렬위해 flex 적용 */
 .header_menu {
     display: flex;
-    background: #555555;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.header_menu>li{
-    flex: 1;
+.has-dropdown {
+    width: 100%;
+    background-color: rgb(255, 255, 255, .4);
+    display: inline-block;
+    position: relative;
 }
 
-.header_menu li a {
-    padding: 1em;
+.has-dropdown>a {
+    display: block;
+    padding: 10px;
+    color: #000;
+    text-decoration: none;
+}
+
+.mega_menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.has-dropdown:hover .mega_menu {
     display: block;
 }
 
-/* 호버 시, 글씨 색 변경 / 배경변경 / > 꺽쇠표시 */
-.header_menu li a:hover {
-    color: #E3B04B;
+.has-dropdown a {
+    width: 100px;
 }
 
-.col>ul>li>a:hover::after {
-    content: " >";
+.col {
+    display: inline-block;
+    width: 33%;
+    padding: 20px;
+    vertical-align: top;
+    box-sizing: border-box;
 }
 
-/* Featured Product 주요제품 사진 짤림. width 크기 맞추어야함 */
-.mega_menu {
+
+.mega_menu li {
+    display: block;
+}
+
+.has-dropdown:hover>ul {
     position: absolute;
+    top: 100%;
     left: 0;
-    width: 100%;
-    height: 600px;
-    flex-basis: 100%;
-    background: #ffffff;
-    visibility: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
+
+.has-dropdown:hover>ul>li {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.has-dropdown:hover>ul>li:last-child {
+    border-bottom: none;
+}
+
+
+
+.has-dropdown:hover .mega_menu {
+    display: block;
+}
+
 
 .header_menu li:hover>.mega_menu {
     opacity: 1;
     overflow: visible;
     visibility: visible;
-}
-
-/* col 클래스 없어도됨 열 메뉴 파악용 */
-.mega_menu .col {
-    padding: 1em;
-}
-
-.mega_menu .col li {
-    margin-bottom: 0.75em;
-}
-
-.mega_menu .col h4 {
-    text-transform: uppercase;
-    margin: 0 0 1em 0;
-}
-
-.mega_menu .col a {
-    padding: 0;
-}
-
-.mega_menu .col img {
-    display: block;
-}
-
-.mega_menu .col p {
-    margin-bottom: 0;
-}
-
-.mega_menu .col strong {
-    text-transform: uppercase;
-}
-
-.col {
-    width: 100%;
 }
 
 /* between 없어도됨 / visibility 사용 - 요소를 숨김, display none처럼 다 없애는게아님 */
@@ -224,8 +244,8 @@ header{
 
 .col>ul>li {
     display: flex;
-    justify-content: center;
     position: relative;
+    /* float: left; */
     width: 150px;
 }
 
@@ -239,7 +259,7 @@ header{
 }
 
 .col>li {
-    text-align: center;
+    /* text-align: center; */
     border-bottom: 1px solid #2b2b28;
 
 }
@@ -253,7 +273,6 @@ header{
 .column ul>li:hover {
     color: #e3b04b;
 }
-
 
 /* 메뉴 */
 .navbar {
@@ -269,23 +288,18 @@ header{
     z-index: 1;
 }
 
-.navbar>div:not(:last-child):hover{
+.navbar>div:not(:last-child):hover {
     background-color: white;
 }
 
-.navbar>div:not(:last-child,:first-child){
+.navbar>div:not(:last-child, :first-child) {
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
-    flex : 1;
+    flex: 1;
     width: 100%;
     height: 100%;
-}
-
-.navbar>a>img {
-    width: 145px;
-    height: 65px;
 }
 
 /* 메뉴 안의 링크 */
@@ -297,24 +311,29 @@ header{
     text-align: center;
 }
 
-.navbar>div:not(:last-child){
+.navbar>div:not(:last-child) {
     width: 100%;
     line-height: 100%;
 }
 
 /* 드롭다운 내용물 */
 .dropdown {
-    /* float: left; */
     display: inline-block;
     overflow: hidden;
 }
 
+.dropdown,
+.dropdown * {
+    cursor: pointer;
+}
+
 /* 드롭다운 버튼 */
+
 .dropdown .dropbtn {
     font-size: 16px;
     border: none;
     /* 두리 밖에 넣는 라인 */
-    color: black; 
+    color: black;
     padding: 8px 16px;
     background-color: inherit;
     margin: 0;
@@ -329,7 +348,7 @@ header{
 
 /* 드롭다운 내용물(기본상태를 숨김으로) */
 .dropdown-content {
-    background-color: white;
+    background-color: rgb(254, 254, 254, .7);
     border: 1px solid #2b2b28;
     display: none;
     position: absolute;
@@ -339,17 +358,22 @@ header{
     z-index: 1;
 }
 
-    /*      menu page         */
+.col {
+    width: 300px;
+}
+
+/*      menu page         */
 
 /* 메가메뉴 제목 (선택사항) */
 .dropdown-content .header {
-    background: white;
+    /* background: white; */
     padding: 16px;
     color: #0081F2;
 }
 
-/* 드롭다운 메뉴에 호버 시 보이게 함 */
-.dropdown:hover .dropdown-content {
+/* 드롭다운 메뉴에 클릭 시 보이게 함 */
+
+.dropdown.active .dropdown-content {
     display: block;
 }
 
@@ -365,7 +389,7 @@ header{
 
 /* 호버 시 배경 컬러 */
 .column a:hover {
-    background-color: white;
+    /* background-color: white; */
     border: none;
     font-weight: none;
 }
@@ -436,7 +460,6 @@ header{
     transform: rotate(-45deg);
 }
 
-
 /* ==============상단 메뉴바 제작중==================== */
 .top_menu {
     display: flex;
@@ -473,7 +496,7 @@ header{
     margin-top: 10px;
 }
 
-.top_header {
+.top-header {
     position: sticky;
     top: 0;
 
@@ -496,10 +519,6 @@ header{
     display: inline-block;
 }
 
-.loginMenu a {
-    color: #595959;
-}
-
 .full>div:nth-child(2) {
     overflow: hidden;
     font-size: 40px;
@@ -514,4 +533,23 @@ header{
     display: inline-block;
     color: aliceblue;
     background-color: rgb(52, 152, 219);
+}
+
+/* ============햄버거 메뉴=============== */
+
+/* =-=--==========상단 메뉴========= */
+
+#menu {
+
+    display: flex;
+    position: sticky;
+    width: 100%;
+    height: 70px;
+    top: 0px;
+    background: rgb(243, 191, 20);
+    z-index: 10;
+}
+
+.freecoupon {
+    color: #2b2b28;
 }
